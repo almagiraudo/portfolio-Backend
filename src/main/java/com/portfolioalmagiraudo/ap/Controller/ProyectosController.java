@@ -1,6 +1,5 @@
 package com.portfolioalmagiraudo.ap.Controller;
 
-
 import com.portfolioalmagiraudo.ap.Interface.IProyectosService;
 import com.portfolioalmagiraudo.ap.entity.Proyectos;
 import java.util.List;
@@ -22,7 +21,6 @@ public class ProyectosController {
 
     @Autowired
     IProyectosService iproyectosService;
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("proyectos/traer")
     public List<Proyectos> getProyectos() {
         return iproyectosService.getProyectos();
@@ -61,4 +59,3 @@ public class ProyectosController {
         return iproyectosService.findProyectos((long) 1);
     }
 }
-

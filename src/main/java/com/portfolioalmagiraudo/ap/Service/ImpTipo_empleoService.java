@@ -2,13 +2,15 @@
 package com.portfolioalmagiraudo.ap.Service;
 
 import com.portfolioalmagiraudo.ap.Entity.Tipo_empleo;
+import com.portfolioalmagiraudo.ap.Interface.ITipo_empleoService;
 import com.portfolioalmagiraudo.ap.Repository.ITipo_empleoRepository;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-
-public class ImpTipo_empleoService {
+@Service
+public class ImpTipo_empleoService implements ITipo_empleoService{
      @Autowired ITipo_empleoRepository itipo_empleoRepository;
     
     public List<Tipo_empleo> getTipo_empleo() {

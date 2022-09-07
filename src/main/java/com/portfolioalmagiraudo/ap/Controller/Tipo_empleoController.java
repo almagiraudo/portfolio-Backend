@@ -22,8 +22,6 @@ public class Tipo_empleoController {
 
     @Autowired
     ITipo_empleoService itipo_empleoService;
-
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("tipo_empleo/traer")
     public List<Tipo_empleo> getTipo_empleo() {
         return itipo_empleoService.getTipo_empleo();

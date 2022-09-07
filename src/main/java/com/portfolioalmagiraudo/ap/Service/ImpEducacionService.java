@@ -1,11 +1,14 @@
 package com.portfolioalmagiraudo.ap.Service;
 
 import com.portfolioalmagiraudo.ap.Entity.Educacion;
+import com.portfolioalmagiraudo.ap.Interface.IEducacionService;
 import com.portfolioalmagiraudo.ap.Repository.IEducacionRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public class ImpEducacionService {
+@Service
+public class ImpEducacionService implements IEducacionService{
 
     @Autowired
     IEducacionRepository ieducacionRepository;

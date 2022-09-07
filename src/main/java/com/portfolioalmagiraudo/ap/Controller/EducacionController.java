@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin (origins = "http://localhost:4200")
 public class EducacionController {
   @Autowired IEducacionService ieducacionService;
-  @CrossOrigin (origins = "http://localhost:4200")
   @GetMapping("educacion/traer")
   public List<Educacion> getEducacion(){
       return ieducacionService.getEducacion();

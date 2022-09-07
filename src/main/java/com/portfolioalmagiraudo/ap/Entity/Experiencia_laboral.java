@@ -1,27 +1,28 @@
 package com.portfolioalmagiraudo.ap.Entity;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-
+@Entity
 public class Experiencia_laboral {
-       @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
-  
-  @NotNull
-  @Size(min = 1, max = 50,message = "No cumple con la longitud")
-  private String descripcion;
-  
-   
-  @Size(min = 1, max = 50,message = "No cumple con la longitud")
-  private String fechaInicio;
-  
-  @Size(min = 1, max = 50,message = "No cumple con la longitud")
-  private String fechaFin;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotNull
+    @Size(min = 1, max = 50, message = "No cumple con la longitud")
+    private String descripcion;
+
+    @Size(min = 1, max = 50, message = "No cumple con la longitud")
+    private String fechaInicio;
+
+    @Size(min = 1, max = 50, message = "No cumple con la longitud")
+    private String fechaFin;
 
     public String getDescripcion() {
         return descripcion;
@@ -46,5 +47,5 @@ public class Experiencia_laboral {
     public void setFechaFin(String fechaFin) {
         this.fechaFin = fechaFin;
     }
-  
+
 }

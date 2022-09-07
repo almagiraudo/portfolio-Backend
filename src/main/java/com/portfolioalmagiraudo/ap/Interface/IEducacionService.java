@@ -14,6 +14,6 @@ public interface IEducacionService {
     //Eliminar un objeto buscado por Id
     public void deleteEducacion(Long id);
     
-    //Buscar una Educacion
+    //Buscar  Educacion
     public Educacion findEducacion(Long id);
 }

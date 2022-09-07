@@ -1,12 +1,15 @@
 package com.portfolioalmagiraudo.ap.Service;
 
 
+import com.portfolioalmagiraudo.ap.Interface.IProyectosService;
 import com.portfolioalmagiraudo.ap.Repository.IProyectosRepository;
 import com.portfolioalmagiraudo.ap.entity.Proyectos;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public class ImpProyectosService {
+@Service
+public class ImpProyectosService implements IProyectosService{
       @Autowired IProyectosRepository iproyectosRepository;
     
     public List<Proyectos> getProyectos() {
