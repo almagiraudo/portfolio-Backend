@@ -26,21 +26,21 @@ public class EducacionController {
   }
   
  @PreAuthorize("hasRole('ADMIN')") 
- @PostMapping("/educacion/crear")
+ @PostMapping("educacion/crear")
   public String createEducacion(@RequestBody Educacion educacion){
    ieducacionService.saveEducacion(educacion);
     return "La educacion fue creada correctamente";
   }
  
  @PreAuthorize("hasRole('ADMIN')") 
- @DeleteMapping("/educacion/borrar/{id}")
+ @DeleteMapping("educacion/borrar/{id}")
  public String deleteEducacion(@PathVariable Long id){
      ieducacionService.deleteEducacion(id);
      return "La educacion fue eliminada correctamente";
  }
  
  @PreAuthorize("hasRole('ADMIN')") 
- @PutMapping("/educacion/editar/{id}")
+ @PutMapping("educacion/editar/{id}")
  public Educacion editEducacion(@PathVariable Long id, 
                             @RequestParam("descripcion")String nuevoDescripcion,
                             @RequestParam("fechaInicio")String nuevoFechaInicio,
@@ -52,7 +52,7 @@ public class EducacionController {
      ieducacionService.saveEducacion(educacion);
      return educacion;
  }
- @GetMapping("educacion/traer")
+ @GetMapping("educacion/traiga")
     public Educacion findEducacion(){
         return ieducacionService.findEducacion((long)1);
     }

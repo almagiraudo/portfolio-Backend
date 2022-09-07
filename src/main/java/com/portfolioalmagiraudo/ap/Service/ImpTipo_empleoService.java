@@ -13,22 +13,26 @@ import org.springframework.stereotype.Service;
 public class ImpTipo_empleoService implements ITipo_empleoService{
      @Autowired ITipo_empleoRepository itipo_empleoRepository;
     
+     @Override
     public List<Tipo_empleo> getTipo_empleo() {
     List<Tipo_empleo> tipo_empleo = itipo_empleoRepository.findAll();
     return tipo_empleo;
     }
 
     
+     @Override
     public void saveTipo_empleo(Tipo_empleo tipo_empleo) {
         itipo_empleoRepository.save(tipo_empleo);
     }
 
     
+     @Override
     public void deleteTipo_empleo(Long id) {
         itipo_empleoRepository.deleteById(id);
     }
 
     
+     @Override
     public Tipo_empleo findTipo_empleo(Long id) {
           Tipo_empleo tipo_empleo = itipo_empleoRepository.findById(id).orElse(null);
           return tipo_empleo;

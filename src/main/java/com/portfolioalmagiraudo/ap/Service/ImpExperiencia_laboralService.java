@@ -13,19 +13,23 @@ public class ImpExperiencia_laboralService implements IExperiencia_laboralServic
     @Autowired
     IExperiencia_laboralRepository iexperiencia_laboralRepository;
 
+    @Override
     public List<Experiencia_laboral> getExperiencia_laboral() {
         List<Experiencia_laboral> experiencia_laboral = iexperiencia_laboralRepository.findAll();
         return experiencia_laboral;
     }
 
+    @Override
     public void saveExperiencia_laboral(Experiencia_laboral experiencia_laboral) {
         iexperiencia_laboralRepository.save(experiencia_laboral);
     }
 
+    @Override
     public void deleteExperiencia_laboral(Long id) {
         iexperiencia_laboralRepository.deleteById(id);
     }
 
+    @Override
     public Experiencia_laboral findExperiencia_laboral(Long id) {
         Experiencia_laboral experiencia_laboral = iexperiencia_laboralRepository.findById(id).orElse(null);
         return experiencia_laboral;

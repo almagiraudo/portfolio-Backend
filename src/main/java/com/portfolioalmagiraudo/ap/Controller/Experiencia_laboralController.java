@@ -58,7 +58,7 @@ public class Experiencia_laboralController {
         return experiencia_laboral;
     }
 
-    @GetMapping("experiencia_laboral/traer")
+    @GetMapping("experiencia_laboral/traer/experiencia")
     public Experiencia_laboral findExperiencia_laboral() {
         return iexperiencia_laboralService.findExperiencia_laboral((long) 1);
     }
