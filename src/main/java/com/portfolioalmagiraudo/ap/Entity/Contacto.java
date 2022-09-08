@@ -1,4 +1,4 @@
-package com.portfolioalmagiraudo.ap.entity;
+package com.portfolioalmagiraudo.ap.Entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,29 +8,20 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Proyectos {
-
+public class Contacto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
     @Size(min = 1, max = 50, message = "No cumple con la longitud")
-    private String descripcion;
-
-    @Size(min = 1, max = 50, message = "No cumple con la longitud")
-    private String img;
-
-    @Size(min = 1, max = 50, message = "No cumple con la longitud")
     private String nombre;
 
-    public String getNombre() {
-        return nombre;
-    }
+    @Size(min = 1, max = 50, message = "No cumple con la longitud")
+    private String email;
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+    @Size(min = 1, max = 50, message = "No cumple con la longitud")
+    private String mensaje;
 
     public Long getId() {
         return id;
@@ -40,20 +31,27 @@ public class Proyectos {
         this.id = id;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getImg() {
-        return img;
+    public String getEmail() {
+        return email;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
 }

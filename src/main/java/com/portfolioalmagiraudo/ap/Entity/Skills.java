@@ -1,4 +1,4 @@
-package com.portfolioalmagiraudo.ap.entity;
+package com.portfolioalmagiraudo.ap.Entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Proyectos {
+public class Skills {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,21 +16,13 @@ public class Proyectos {
 
     @NotNull
     @Size(min = 1, max = 50, message = "No cumple con la longitud")
-    private String descripcion;
+    private String nombre;
+
+    @Size(min = 1, max = 50, message = "No cumple con la longitud")
+    private String progreso;
 
     @Size(min = 1, max = 50, message = "No cumple con la longitud")
     private String img;
-
-    @Size(min = 1, max = 50, message = "No cumple con la longitud")
-    private String nombre;
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
 
     public Long getId() {
         return id;
@@ -40,20 +32,28 @@ public class Proyectos {
         this.id = id;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getImg() {
-        return img;
+    public void setProgreso(String progreso) {
+        this.progreso = progreso;
+    }
+
+    public String getProgreso() {
+        return progreso;
     }
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public String getImg() {
+        return img;
     }
 
 }
