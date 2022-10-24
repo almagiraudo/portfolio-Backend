@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/experiencia")
+//@CrossOrigin(origins = "http://localhost:4200")
 @CrossOrigin(origins = "https://almagiraudo-portfolio-frontend.web.app")
 public class Experiencia_laboralController {
 
@@ -34,7 +36,7 @@ public class Experiencia_laboralController {
         return new ResponseEntity(list, HttpStatus.OK);
     }
     
-    
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity <?> create(@RequestBody dtoExperiencia dtoexp){
         if(StringUtils.isBlank(dtoexp.getNombreEx()))
@@ -46,7 +48,7 @@ public class Experiencia_laboralController {
         return new ResponseEntity(new Mensaje("ExperienciaAgregada"), HttpStatus.OK);
     }
     
-    
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete (@PathVariable("id")Long id){
         if (!impexperiencia_laboralService.existById(id))
@@ -57,7 +59,7 @@ public class Experiencia_laboralController {
             return new ResponseEntity(new Mensaje("La experiencia fue borrada"),HttpStatus.OK);
     }
 
-   
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update (@PathVariable("id")Long id,
             @RequestBody dtoExperiencia dtoexp) {

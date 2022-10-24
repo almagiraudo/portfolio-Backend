@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/skills")
+//@CrossOrigin(origins = "http://localhost:4200")
 @CrossOrigin(origins = "https://almagiraudo-portfolio-frontend.web.app")
 public class SkillsController {
     @Autowired
@@ -29,21 +30,21 @@ public class SkillsController {
         return impskillsService.getSkills();
     }
 
-    
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
     public String createSkills(@RequestBody Skills skills) {
         impskillsService.saveSkills(skills);
         return "La skill fue creada correctamente";
     }
 
-    
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public String deleteSkills(@PathVariable Long id) {
         impskillsService.deleteSkills(id);
         return "La skill fue eliminada correctamente";
     }
 
-    
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     public Skills editSkills(@PathVariable("id") Long id,
             @RequestBody Skills skills) {

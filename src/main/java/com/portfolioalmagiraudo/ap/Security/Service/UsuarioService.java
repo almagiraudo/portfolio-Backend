@@ -3,6 +3,7 @@ package com.portfolioalmagiraudo.ap.Security.Service;
 
 import com.portfolioalmagiraudo.ap.Security.Entity.Usuario;
 import com.portfolioalmagiraudo.ap.Security.Repository.iUsuarioRepository;
+import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,10 @@ public class UsuarioService {
     
     public void save (Usuario usuario){
         iusuarioRepository.save(usuario);
+    }
+    
+     public List<Usuario> list() {
+        return iusuarioRepository.findAll();  
+    
     }
 }
