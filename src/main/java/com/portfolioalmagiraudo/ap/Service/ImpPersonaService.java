@@ -5,6 +5,7 @@ import com.portfolioalmagiraudo.ap.Interface.IPersonaService;
 import com.portfolioalmagiraudo.ap.Repository.IPersonaRepository;
 import com.portfolioalmagiraudo.ap.Entity.Persona;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,4 +37,10 @@ public class ImpPersonaService implements IPersonaService {
           return persona;
     }
     
+     public boolean existsById(Long id) {
+        return ipersonaRepository.existsById(id);
+    }
+    public Optional<Persona> getOne(long id){
+        return ipersonaRepository.findById(id);
+    }
 }

@@ -14,7 +14,7 @@ public interface IExperiencia_laboralService {
     //Eliminar un objeto buscado por Id
     public void deleteExperiencia_laboral(Long id);
     
-    //Buscar una EExperiencia_laboral
+    //Buscar una Experiencia_laboral
     public Experiencia_laboral findExperiencia_laboral(Long id);
     
 }

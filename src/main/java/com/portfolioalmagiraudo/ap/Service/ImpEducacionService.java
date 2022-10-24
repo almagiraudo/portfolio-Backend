@@ -1,37 +1,49 @@
 package com.portfolioalmagiraudo.ap.Service;
 
 import com.portfolioalmagiraudo.ap.Entity.Educacion;
-import com.portfolioalmagiraudo.ap.Interface.IEducacionService;
 import com.portfolioalmagiraudo.ap.Repository.IEducacionRepository;
 import java.util.List;
+import java.util.Optional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
-public class ImpEducacionService implements IEducacionService{
+@Service 
+@Transactional
+public class ImpEducacionService {
 
     @Autowired
-    IEducacionRepository ieducacionRepository;
+    IEducacionRepository iEducacionRepository;
     
-    @Override
-    public List<Educacion> getEducacion() {
-        List<Educacion> educacion = ieducacionRepository.findAll();
-        return educacion;
+    public List<Educacion> list() {
+        return iEducacionRepository.findAll();  
+    
     }
     
-    @Override
+    public Optional<Educacion> getOne(long id){
+        return iEducacionRepository.findById(id);
+    }
+    
+    public Optional<Educacion>getByNombreE(String nombreE){
+        return iEducacionRepository.findByNombreE(nombreE);
+    }
+    
+    
     public void saveEducacion(Educacion educacion) {
-        ieducacionRepository.save(educacion);
+        iEducacionRepository.save(educacion);
     }
 
-    @Override
     public void deleteEducacion(Long id) {
-        ieducacionRepository.deleteById(id);
+        iEducacionRepository.deleteById(id);
     }
 
-    @Override
-    public Educacion findEducacion(Long id) {
-        Educacion educacion = ieducacionRepository.findById(id).orElse(null);
-        return educacion;
+    public boolean existById(Long id) {
+        return iEducacionRepository.existsById(id);
     }
+
+    public boolean existsByNombreE(String nombreE){
+     return iEducacionRepository.existsByNombreE(nombreE);
+    }
+
+   
 }

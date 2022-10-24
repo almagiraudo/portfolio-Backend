@@ -24,6 +24,18 @@ public class Proyectos {
     @Size(min = 1, max = 50, message = "No cumple con la longitud")
     private String nombre;
 
+    //Constuctores
+
+    public Proyectos() {
+    }
+
+    public Proyectos(String descripcion, String img, String nombre) {
+        this.descripcion = descripcion;
+        this.img = img;
+        this.nombre = nombre;
+    }
+    //Getters & Setters
+    
     public String getNombre() {
         return nombre;
     }

@@ -24,6 +24,19 @@ public class Skills {
     @Size(min = 1, max = 50, message = "No cumple con la longitud")
     private String img;
 
+    //Constuctores
+
+    public Skills() {
+    }
+
+    public Skills(String nombre, String progreso, String img) {
+        this.nombre = nombre;
+        this.progreso = progreso;
+        this.img = img;
+    }
+    
+    //Getters & Setters
+    
     public Long getId() {
         return id;
     }

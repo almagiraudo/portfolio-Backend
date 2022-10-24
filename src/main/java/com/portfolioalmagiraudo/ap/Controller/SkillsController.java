@@ -1,8 +1,8 @@
 package com.portfolioalmagiraudo.ap.Controller;
 
+import com.portfolioalmagiraudo.ap.Entity.Skills;
 import com.portfolioalmagiraudo.ap.Security.Controller.Mensaje;
-import com.portfolioalmagiraudo.ap.Service.ImpProyectosService;
-import com.portfolioalmagiraudo.ap.entity.Proyectos;
+import com.portfolioalmagiraudo.ap.Service.ImpSkillsService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,46 +19,50 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/proyectos")
+@RequestMapping("/skills")
 @CrossOrigin(origins = "https://almagiraudo-portfolio-frontend.web.app")
-public class ProyectosController {
-
+public class SkillsController {
     @Autowired
-    ImpProyectosService impproyectosService;
+    ImpSkillsService impskillsService;
     @GetMapping("/list")
-    public List<Proyectos> getProyectos() {
-        return impproyectosService.getProyectos();
+    public List<Skills> getSkills() {
+        return impskillsService.getSkills();
     }
 
     
     @PostMapping("/create")
-    public String createProyectos(@RequestBody Proyectos proyectos) {
-        impproyectosService.saveProyectos(proyectos);
-        return "El proyecto fue creado correctamente";
+    public String createSkills(@RequestBody Skills skills) {
+        impskillsService.saveSkills(skills);
+        return "La skill fue creada correctamente";
     }
 
     
     @DeleteMapping("/delete/{id}")
-    public String deleteProyectos(@PathVariable Long id) {
-        impproyectosService.deleteProyectos(id);
-        return "El proyecto fue eliminado correctamente";
+    public String deleteSkills(@PathVariable Long id) {
+        impskillsService.deleteSkills(id);
+        return "La skill fue eliminada correctamente";
     }
 
     
     @PutMapping("/update/{id}")
-    public Proyectos editProyectos(@PathVariable Long id,
-            @RequestBody Proyectos proyectos){
-        proyectos.setId(id);
-        impproyectosService.saveProyectos(proyectos);
-        return proyectos;
+    public Skills editSkills(@PathVariable("id") Long id,
+            @RequestBody Skills skills) {
+        skills.setId(id);
+        impskillsService.saveSkills(skills);
+        return skills;
     }
 
-    @GetMapping(("/detail/{id}"))
-    public ResponseEntity<Proyectos> getById(@PathVariable("id")long id){
-        if(!impproyectosService.existsById(id)){
+    @GetMapping("/get/{id}")
+    public Skills listId (@PathVariable Long id) {
+        return impskillsService.findSkills(id);
+    }
+     @GetMapping(("/detail/{id}"))
+    public ResponseEntity<Skills> getById(@PathVariable("id")long id){
+        if(!impskillsService.existsById(id)){
             return new ResponseEntity(new Mensaje("No existe el id"), HttpStatus.BAD_REQUEST);
         }
-        Proyectos proyectos = impproyectosService.getOne(id).get();
-        return new ResponseEntity(proyectos, HttpStatus.OK);
+        Skills skills = impskillsService.getOne(id).get();
+        return new ResponseEntity(skills, HttpStatus.OK);
     }
 }
+

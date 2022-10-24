@@ -15,14 +15,21 @@ public class Educacion {
 
     @NotNull
     @Size(min = 1, max = 50, message = "No cumple con la longitud")
-    private String descripcion;
+    private String descripcionE;
 
     @Size(min = 1, max = 50, message = "No cumple con la longitud")
-    private String fechaInicio;
+    private String nombreE;
+//Constructor
 
-    @Size(min = 1, max = 50, message = "No cumple con la longitud")
-    private String fechaFin;
-
+    public Educacion() {
+    }
+    
+    public Educacion(String descripcionE, String nombreE) {
+        this.descripcionE = descripcionE;
+        this.nombreE = nombreE;
+    }
+//Getters & Setters
+    
     public Long getId() {
         return id;
     }
@@ -31,29 +38,18 @@ public class Educacion {
         this.id = id;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getDescripcionE() {
+        return descripcionE;
+    }
+    public void setDescripcionE(String descripcionEs) {
+        this.descripcionE = descripcionEs;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public String getNombreE() {
+        return nombreE;
     }
 
-    public String getFechaInicio() {
-        return fechaInicio;
+    public void setNombreE(String nombreEs) {
+        this.nombreE = nombreEs;
     }
-
-    public void setFechaInicio(String fechaInicio) {
-        this.fechaInicio = fechaInicio;
-    }
-
-    public String getFechaFin() {
-        return fechaFin;
-    }
-
-    public void setFechaFin(String fechaFin) {
-        this.fechaFin = fechaFin;
-    }
-    
-    
 }
