@@ -18,8 +18,8 @@ public class Skills {
     @Size(min = 1, max = 50, message = "No cumple con la longitud")
     private String nombre;
 
-    @Size(min = 1, max = 50, message = "No cumple con la longitud")
-    private String progreso;
+    @NotNull
+    private int porcentaje;
 
     @Size(min = 1, max = 50, message = "No cumple con la longitud")
     private String img;
@@ -29,14 +29,17 @@ public class Skills {
     public Skills() {
     }
 
-    public Skills(String nombre, String progreso, String img) {
+    public Skills(String nombre, int porcentaje, String img) {
         this.nombre = nombre;
-        this.progreso = progreso;
+        this.porcentaje = porcentaje;
         this.img = img;
+    }
+
+    public Skills(String nombre, int porcentaje) {
     }
     
     //Getters & Setters
-    
+
     public Long getId() {
         return id;
     }
@@ -53,20 +56,21 @@ public class Skills {
         this.nombre = nombre;
     }
 
-    public void setProgreso(String progreso) {
-        this.progreso = progreso;
+    public int getPorcentaje() {
+        return porcentaje;
     }
 
-    public String getProgreso() {
-        return progreso;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
+    public void setPorcentaje(int porcentaje) {
+        this.porcentaje = porcentaje;
     }
 
     public String getImg() {
         return img;
     }
 
+    public void setImg(String img) {
+        this.img = img;
+    }
+    
+   
 }

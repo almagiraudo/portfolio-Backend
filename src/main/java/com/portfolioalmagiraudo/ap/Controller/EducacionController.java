@@ -24,8 +24,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/educacion")
-//@CrossOrigin(origins = "http://localhost:4200")
-@CrossOrigin(origins = "https://almagiraudo-portfolio-frontend.web.app")
+@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "https://almagiraudo-portfolio-frontend.web.app")
 public class EducacionController {
 
     @Autowired
@@ -46,7 +46,7 @@ public class EducacionController {
         return new ResponseEntity(educacion, HttpStatus.OK);
     }
     
-    @PreAuthorize("hasRole('ADMIN')")
+    
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id")long id){
         if (!impEducacionService.existById(id)){
@@ -57,7 +57,7 @@ public class EducacionController {
     }
     
     
-    @PreAuthorize("hasRole('ADMIN')")
+    
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody dtoEducacion dtoeducacion){
         if(StringUtils.isBlank(dtoeducacion.getNombreE())){
@@ -72,7 +72,7 @@ public class EducacionController {
         impEducacionService.saveEducacion(educacion);
         return new ResponseEntity(new Mensaje("Educacion creada"), HttpStatus.OK);
     }
-    @PreAuthorize("hasRole('ADMIN')")
+    
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update (@PathVariable("id") long id, @RequestBody dtoEducacion dtoeducacion){
         if(!impEducacionService.existById(id)){

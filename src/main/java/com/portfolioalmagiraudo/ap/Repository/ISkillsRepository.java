@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ISkillsRepository extends JpaRepository <Skills, Long>{
-     public Optional<Skills> findByNombre(String nombre);
+   public Optional<Skills> findByNombre(String nombre);
    public boolean existsByNombre(String nombre);
+   public Optional<Skills> findById(Long id);
+   public boolean existsById(Long id);
 }

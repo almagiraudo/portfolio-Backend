@@ -2,12 +2,13 @@ package com.portfolioalmagiraudo.ap.Controller;
 
 import com.portfolioalmagiraudo.ap.Entity.Skills;
 import com.portfolioalmagiraudo.ap.Security.Controller.Mensaje;
+import com.portfolioalmagiraudo.ap.Security.Dto.dtoSkills;
 import com.portfolioalmagiraudo.ap.Service.ImpSkillsService;
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,43 +21,66 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/skills")
-//@CrossOrigin(origins = "http://localhost:4200")
-@CrossOrigin(origins = "https://almagiraudo-portfolio-frontend.web.app")
+@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "https://almagiraudo-portfolio-frontend.web.app")
 public class SkillsController {
     @Autowired
     ImpSkillsService impskillsService;
+    
     @GetMapping("/list")
     public List<Skills> getSkills() {
-        return impskillsService.getSkills();
+        return impskillsService.list();
     }
-
-    @PreAuthorize("hasRole('ADMIN')")
+    
     @PostMapping("/create")
-    public String createSkills(@RequestBody Skills skills) {
-        impskillsService.saveSkills(skills);
-        return "La skill fue creada correctamente";
+     public ResponseEntity<?> create(@RequestBody dtoSkills dtoskills){
+        if(StringUtils.isBlank(dtoskills.getNombre())){
+            return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
+        }
+        if (impskillsService.existsByNombre(dtoskills.getNombre())){
+            return new ResponseEntity(new Mensaje("Ese nombre ya existe"), HttpStatus.BAD_REQUEST);
+        }
+        Skills skills = new Skills(
+        dtoskills.getNombre(), dtoskills.getPorcentaje(), dtoskills.getImg()
+        );
+        impskillsService.save(skills);
+        return new ResponseEntity(new Mensaje("Skill creada"), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    
     @DeleteMapping("/delete/{id}")
-    public String deleteSkills(@PathVariable Long id) {
-        impskillsService.deleteSkills(id);
+    public String delete(@PathVariable Long id) {
+        impskillsService.delete(id);
         return "La skill fue eliminada correctamente";
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    
     @PutMapping("/update/{id}")
-    public Skills editSkills(@PathVariable("id") Long id,
-            @RequestBody Skills skills) {
-        skills.setId(id);
-        impskillsService.saveSkills(skills);
-        return skills;
+    public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody dtoSkills dtoskills) {
+        //Validamos si existe el ID
+        if (!impskillsService.existsById(id)) {
+            return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
+        }
+        //Compara nombre de skills
+        if (impskillsService.existsByNombre(dtoskills.getNombre()) && impskillsService.getByNombre(dtoskills.getNombre()).get()
+                .getId() != id) {
+            return new ResponseEntity(new Mensaje("Esa skill ya existe"), HttpStatus.BAD_REQUEST);
+        }
+        //No puede estar vacio
+        if (StringUtils.isBlank(dtoskills.getNombre())) {
+            return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
+        }
+
+        Skills skills = impskillsService.getOne(id).get();
+        skills.setNombre(dtoskills.getNombre());
+        skills.setPorcentaje(dtoskills.getPorcentaje());
+
+        impskillsService.save(skills);
+        return new ResponseEntity(new Mensaje("Skill actualizada"), HttpStatus.OK);
+
     }
 
-    @GetMapping("/get/{id}")
-    public Skills listId (@PathVariable Long id) {
-        return impskillsService.findSkills(id);
-    }
+    
      @GetMapping(("/detail/{id}"))
     public ResponseEntity<Skills> getById(@PathVariable("id")long id){
         if(!impskillsService.existsById(id)){

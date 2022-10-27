@@ -8,7 +8,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/personas")
-//@CrossOrigin(origins = "http://localhost:4200")
-@CrossOrigin(origins = "https://almagiraudo-portfolio-frontend.web.app")
+@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "https://almagiraudo-portfolio-frontend.web.app")
 public class PersonaController {
     @Autowired
     ImpPersonaService imppersonaService;
@@ -31,21 +30,21 @@ public class PersonaController {
         return imppersonaService.getPersona();
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    
     @PostMapping("/create")
     public String createPersona(@RequestBody Persona persona) {
         imppersonaService.savePersona(persona);
         return "La persona fue creada correctamente";
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    
     @DeleteMapping("/delete/{id}")
     public String deletePersona(@PathVariable Long id) {
         imppersonaService.deletePersona(id);
         return "La persona fue eliminada correctamente";
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    
     @PutMapping("/update/{id}")
     public Persona editPersona(@PathVariable("id")Long id,
             @RequestBody Persona persona) {
