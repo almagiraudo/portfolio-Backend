@@ -41,7 +41,7 @@ public class SkillsController {
             return new ResponseEntity(new Mensaje("Ese nombre ya existe"), HttpStatus.BAD_REQUEST);
         }
         Skills skills = new Skills(
-        dtoskills.getNombre(), dtoskills.getPorcentaje(), dtoskills.getImg()
+        dtoskills.getNombre(), dtoskills.getPorcentaje()
         );
         impskillsService.save(skills);
         return new ResponseEntity(new Mensaje("Skill creada"), HttpStatus.OK);
