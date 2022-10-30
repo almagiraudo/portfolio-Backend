@@ -11,4 +11,5 @@ import org.springframework.stereotype.Repository;
 public interface IProyectosRepository extends JpaRepository <Proyectos,Long>{
     public Optional<Proyectos> findByNombre(String nombre);
    public boolean existsByNombre(String nombre);
+   public boolean existsById(Long id);
 }

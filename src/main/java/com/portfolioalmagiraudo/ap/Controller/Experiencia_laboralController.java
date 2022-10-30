@@ -36,7 +36,7 @@ public class Experiencia_laboralController {
         return new ResponseEntity(list, HttpStatus.OK);
     }
     
-    
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity <?> create(@RequestBody dtoExperiencia dtoexp){
         if(StringUtils.isBlank(dtoexp.getNombreEx()))
@@ -48,7 +48,7 @@ public class Experiencia_laboralController {
         return new ResponseEntity(new Mensaje("ExperienciaAgregada"), HttpStatus.OK);
     }
     
-    
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete (@PathVariable("id")Long id){
         if (!impexperiencia_laboralService.existById(id))
@@ -59,7 +59,7 @@ public class Experiencia_laboralController {
             return new ResponseEntity(new Mensaje("La experiencia fue borrada"),HttpStatus.OK);
     }
 
-    
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update (@PathVariable("id")Long id,
             @RequestBody dtoExperiencia dtoexp) {

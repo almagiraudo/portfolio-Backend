@@ -68,4 +68,8 @@ public class Proyectos {
         this.img = img;
     }
 
+    public Proyectos get() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

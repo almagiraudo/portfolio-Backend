@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +33,7 @@ public class SkillsController {
         return impskillsService.list();
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
      public ResponseEntity<?> create(@RequestBody dtoSkills dtoskills){
         if(StringUtils.isBlank(dtoskills.getNombre())){
@@ -47,14 +49,14 @@ public class SkillsController {
         return new ResponseEntity(new Mensaje("Skill creada"), HttpStatus.OK);
     }
 
-    
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public String delete(@PathVariable Long id) {
         impskillsService.delete(id);
         return "La skill fue eliminada correctamente";
     }
 
-    
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody dtoSkills dtoskills) {
         //Validamos si existe el ID
